@@ -71,6 +71,7 @@ function App() {
         setIsLoggedIn(true);
         // on success, set userUsername to res.data.username
         setUserUsername(res.data.username);
+        console.log(res.data.username);
       })
       .catch((err) => {
         // on failure, set isLoggedIn to false
@@ -126,10 +127,12 @@ function App() {
 
       {/* if isLoggedIn is true, show Dashboard component */}
       {isLoggedIn ? (
-        <Dashboard userUsername={userUsername} />
+        <p>Logged in</p>
+        // <Dashboard userUsername={userUsername} />
       ) : (
         /* if isLoggedIn is false, show Authentication component */
-        <Authentication />
+          <p>Not logged in</p>
+        // <Authentication />
       )}
 
     </div>
