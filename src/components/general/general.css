@@ -1,17 +1,91 @@
+/* ###### general ###### */
+
+*:focus {
+  outline: none;
+}
+
+/* ###### inputs ###### */
+
 .input-container {
   display: flex;
   flex-direction: column;
+  margin-top: 10rem;
+  margin-left: 2rem;
+  font-size: 1.2rem;
 }
 
-label {
+.input-above {
   align-self: flex-start;
 }
 
-.input-text {
+.input-icon {
+  margin-right: 0.5rem;
+}
+
+.input-text,
+.input-number,
+.input-select {
+  width: 25%;
+  height: 35px;
+  border-bottom: 1px solid red;
+  border-left: none;
+  border-right: none;
+  border-top: none;
+  padding: 0;
+  font-size: 1.2rem;
+  margin-top: 0.5rem;
+}
+
+/* ###### button ###### */
+
+.button-container {
+  display: flex;
+  flex-direction: column;
+  margin-top: 2rem;
+  margin-left: 2rem;
+}
+
+.button-container > button {
+  width: 160px;
+  height: 35px;
+  border-radius: 3px;
+  border: red;
+  color: white;
+  font-size: 1.2rem;
+  background-color: red;
+}
+
+.button-container > button:hover {
+  background-color: #f75151;
+  cursor: pointer;
+}
+
+.button-icon { 
+  margin-right: 1.0rem;
+}
+
+/* ###### search bar ###### */
+
+.search-bar-container {
+  color: rgb(138, 138, 138);
+}
+
+.search-bar-container:hover {
+  color: white;
+}
+
+.search-bar-container .search-bar {
   width: 50%;
-  height: 40px;
-  border-radius: 5px;
-  border: 1px solid #ccc;
   padding: 10px;
-  margin-bottom: 10px;
+  border: none;
+  background-color: rgb(71, 71, 71);
+  border-radius: 50px;
+  text-align: center;
+  cursor: pointer;
+}
+
+.search-bar-container .search-bar-icon {
+  position: absolute;
+  padding: 10px;
+  min-width: 50px;
 }

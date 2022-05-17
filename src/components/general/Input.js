@@ -1,17 +1,19 @@
-import React, { useState } from 'react';
+import React from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import './general.css';
 
 
 const Input = (props) => {
   // returns a <input> element with the given attributes.
 
-  // label: String - input label
-  // type: String - input type
-  // className: String - input className
-  // value: Any - input value
-  // setValue: Function - function to set the value of the input
-  // icon: (optional)FontAwesomeIcon - icon name to decorate input
-  // inputAttributes: (optional)Object - attributes to add to the input element
+  // props:
+  // - label: String - input label
+  // - type: String - input type
+  // - className: String - input className
+  // - value: Any - input value
+  // - setValue: Function - function to set the value of the input
+  // - icon: (optional)FontAwesomeIcon - icon name to decorate input
+  // - inputAttributes: (optional)Object - attributes to add to the input element
 
   // type attribute possible values:
   //   - text
@@ -19,25 +21,27 @@ const Input = (props) => {
   //   - number
 
   // destructuring props
-  const { label, type, className, value, icon, inputAttributes } = props;
-
-  // init state
-  const [inputValue, setValue] = useState(value);
-
-  function handleInput(event) {
-    // set the value of the input
-    setValue(event.target.value);
-  };
+  const { label, type, className, value, icon, inputAttributes, setValue } = props;
 
   return (
     <div className="input-container">
-      {icon && <i className={`fa fa-${icon}`}></i>}
-      <label className="input-label">{label}</label>
+      <div className="input-above">
+        {/* if icon is defined */}
+        {icon &&
+          <FontAwesomeIcon
+            icon={icon}
+            className="input-icon"
+          />
+        }
+        <label className="input-label">
+          {label}
+        </label>
+      </div>
       <input
         className={className}
         type={type}
-        value={inputValue}
-        onChange={handleInput}
+        value={value}
+        onChange={setValue}
         {...inputAttributes}
       />
     </div>
