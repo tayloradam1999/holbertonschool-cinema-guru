@@ -21,8 +21,6 @@ function App() {
   // init state for userUsername
   const [userUsername, setUserUsername] = useState('');
 
-  const baseUrl = 'http://localhost:8000/';
-
   // event handler for input text change
   function handleInput(event) {
     // set the value of the input
@@ -63,7 +61,7 @@ function App() {
     const accessToken = localStorage.getItem('accessToken');
     // send post request to /api/auth with auth header set to 'Bearer <accessToken>'
     axios
-      .post('/api/auth', {}, {
+      .post(`http://localhost:8000/api/auth`, {}, {
         headers: {
           Authorization: `Bearer ${accessToken}`,
         },
@@ -133,7 +131,7 @@ function App() {
         /* if isLoggedIn is false, show Authentication component */
         <Authentication />
       )}
-      
+
     </div>
   );
 }
