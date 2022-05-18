@@ -5,10 +5,11 @@ import './general.css';
 export default function SelectInput(props) {
   // returns a <input> element with the given attributes.
 
-  // label: String - input label
-  // options: Array - array of select options
-  // className: String - input className
-  // value: Any - input value
+  // props:
+  // - label: String - input label
+  // - options: Array - array of select options
+  // - className: String - input className
+  // - value: Any - input value
 
   // destructuring props
   const { label, options, className, value, setValue } = props;

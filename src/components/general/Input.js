@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import './general.css';
 
@@ -16,12 +16,21 @@ const Input = (props) => {
   // - inputAttributes: (optional)Object - attributes to add to the input element
 
   // type attribute possible values:
-  //   - text
-  //   - password
-  //   - number
+  // - text
+  // - password
+  // - number
 
   // destructuring props
   const { label, type, className, value, icon, inputAttributes, setValue } = props;
+
+  // init state
+  const [inputValue, setInputValue] = useState(value);
+
+  // set the value of the input
+  const setValueFunc = (event) => {
+    setInputValue(event.target.value);
+    setValue(event.target.value);
+  };
 
   return (
     <div className="input-container">
@@ -40,9 +49,10 @@ const Input = (props) => {
       <input
         className={className}
         type={type}
-        value={value}
-        onChange={setValue}
+        value={inputValue}
+        onChange={setValueFunc}
         {...inputAttributes}
+        autoComplete="off"
       />
     </div>
   );

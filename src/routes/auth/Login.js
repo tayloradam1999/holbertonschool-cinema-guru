@@ -8,17 +8,17 @@ export default function Login(props) {
   // Returns form with input fields 'username' and 'password' and a button 'Sign in'
 
   // Props:
-  //  - username: string - username
-  //  - password: string - password
-  //  - setUsername: function - sets the state of the username
-  //  - setPassword: function - sets the state of the password
+  // - username: string - username
+  // - password: string - password
+  // - setUsername: function - sets the state of the username
+  //- setPassword: function - sets the state of the password
   
   // destructuring props
   const { username, password, setUsername, setPassword } = props;
 
   return (
     <div className="signin-container">
-      <form className="signin-form">
+      <div className="signin-form">
         <div className="signin-form-header">
           <h1>Sign in with your account</h1>
         </div>
@@ -48,7 +48,7 @@ export default function Login(props) {
             onClick={() => {} }
           />
         </div>
-      </form>
+      </div>
     </div>
   );
 }
