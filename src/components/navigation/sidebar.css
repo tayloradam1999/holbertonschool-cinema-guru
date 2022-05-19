@@ -49,25 +49,25 @@
 
 
 #header .pro-sidebar-inner .pro-sidebar-layout ul .pro-inner-item .pro-icon-wrapper {
-  background-color: black;
+  background-color: rgb(0, 0, 0);
   border-radius: 3px;
 }
 
-.logotext img {
+#header .logotext img {
   width: 100%;
   height: auto;
 }
 
-.selected {
+#header .selected {
   background-color: white !important;
 }
 
-.pro-menu {
+#header .pro-menu {
   margin: 0;
   padding: 0 !important;
 }
 
-h1 {
+#header h1 {
   padding: 0 0 0 20px;
   font-size: 22px;
   text-decoration: underline;
@@ -75,6 +75,29 @@ h1 {
   font-weight: bold;
 }
 
-.menuItems {
-  padding: 2rem 1rem 0 0;
+#header .menuItems {
+  padding: 2rem 0 0 0;
+}
+
+#header .menuItems .pro-item-content {
+  padding: 0 0 0 15px;
+  color:rgb(0, 0, 0);
+}
+
+#header .pro-item-content .arrow-right {
+  color: rgb(0, 0, 0);
+}
+
+#header .pro-item-content svg {
+  float: right;
+  margin-right: 20px;
+}
+
+#header .pro-inner-item:hover {
+  background-color: #f5f5f5;
+}
+
+#header .latestActivities {
+  padding: 5px;
+  border: 2px solid #333333;
 }

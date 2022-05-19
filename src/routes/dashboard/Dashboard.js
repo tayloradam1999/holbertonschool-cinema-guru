@@ -6,10 +6,9 @@ import './Dashboard.css';
 import Favorites from "./Favorites";
 import WatchLater from "./WatchLater";
 import HomePage from "./HomePage";
-import { Route, Link, Routes, Router } from "react-router-dom";
+import { Route, BrowserRouter, Routes } from "react-router-dom";
 
-
-export default function Dashboard({userUsername, setIsLoggedIn}) {
+export default function Dashboard({ userUsername, setIsLoggedIn }) {
   // returns dashboard div component
 
   // Props:
@@ -30,18 +29,20 @@ export default function Dashboard({userUsername, setIsLoggedIn}) {
     tempState ? (
       <Authentication setIsLoggedIn={setIsLoggedIn} setUserUsername={userUsername} />
     ) : (
-        <div className="dashboard-container">
-            <Header userUsername={userUsername} logout={logout} />
-            <SideBar />
-            <div className="dashboard-content">
-              {/* <Routes>
-                <Route path="/" element={<HomePage />} />
-                <Route path="/favorites" element={<Favorites />} />
-                <Route path="/watchlater" element={<WatchLater />} />
-                <Route path="/*" element={<Navigate to="/" />} />
-              </Routes> */}
-            </div>
-        </div>
+      <div className="dashboard-container">
+        <BrowserRouter>
+          <Header userUsername={userUsername} logout={logout} />
+          <SideBar />
+          <div className="dashboard-content">
+            <Routes>
+              <Route path="/" element={<HomePage />} />
+              <Route path="*" element={<HomePage />} />
+              <Route path="/favorites" element={<Favorites />} />
+              <Route path="/watchlater" element={<WatchLater />} />
+            </Routes>
+          </div>
+        </BrowserRouter>
+      </div>
     )
   )
 }

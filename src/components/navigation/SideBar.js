@@ -1,9 +1,10 @@
 import React, { useState } from "react";
 import './sidebar.css';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { ProSidebar, Menu, MenuItem, SubMenu, SidebarHeader, SidebarFooter, SidebarContent } from 'react-pro-sidebar';
+import { ProSidebar, Menu, MenuItem, SidebarContent } from 'react-pro-sidebar';
 import 'react-pro-sidebar/dist/css/styles.css';
-import { FiStar, FiFolder, FiClock, FiArrowRightCircle } from "react-icons/fi";
+import { FiStar, FiFolder, FiClock } from "react-icons/fi";
+import { Link } from "react-router-dom";
 import Activity from "../Activity";
 
 
@@ -12,9 +13,10 @@ export default function SideBar() {
 
   // const navigate = useNavigate();
   const [selected, setSelected] = useState("");
+  const [page, setPage] = useState("");
 
   // sidebar state
-  const [menuCollapse, setMenuCollapse] = useState(false);
+  const [menuCollapse, setMenuCollapse] = useState(true);
 
   const [arrowDirection, setArrowDirection] = useState("right");
 
@@ -41,66 +43,72 @@ export default function SideBar() {
     "created_at": "19th May, 2022"
   };
 
-  // setPage function
-  // const setPage = (page) => {
-  //   setSelected(page);
-  //   navigate(page);
-  // }
-
   return (
     <div id="header">
       <ProSidebar collapsed={menuCollapse}>
         <SidebarContent>
           <Menu iconShape="square">
             <div className="closemenu">
-              <FontAwesomeIcon icon={arrowDirection === 'left' ? "arrow-left" : "arrow-right"} onClick={() => {
+              <FontAwesomeIcon icon={arrowDirection === 'left' ? "xmark" : "bars"} onClick={() => {
                 arrowClick();
                 menuIconClick();
               }} />
             </div>
             <div className="menuItems">
               <MenuItem icon={<FiFolder />} onClick={() => {
-                // setPage('/')
+                setPage('/');
+                setSelected('home');
               }}
-                onMouseOver={() => setSelected('home')}
-                onMouseLeave={() => {
-                  setSelected('');
-                }}
                 className={selected === 'home' ? 'selected' : ''}>
                 Home
+                {/* if selected is home, show the arrow */}
+                {selected === 'home' ?
+                  <Link to="/">
+                    <FontAwesomeIcon icon="arrow-right" className="arrow-right" />
+                  </Link>
+                  : ''}
               </MenuItem>
               <MenuItem icon={<FiStar />} onClick={() => {
+                setPage('/favorites')
+                setSelected('favorites');
               }}
-                onMouseOver={() => setSelected('favorites')}
-                onMouseLeave={() => {
-                  setSelected('');
-                }}
                 className={selected === 'favorites' ? 'selected' : ''}>
                 Favorites
+                {/* if selected is favorites, show the arrow */}
+                {selected === 'favorites' ?
+                  <Link to="/favorites">
+                    <FontAwesomeIcon icon="arrow-right" className="arrow-right" />
+                  </Link> : ''}
               </MenuItem>
               <MenuItem icon={<FiClock />} onClick={() => {
+                setPage('/watchlater')
+                setSelected('watch later');
               }}
-                onMouseOver={() => setSelected('watch later')}
-                onMouseLeave={() => {
-                  setSelected('');
-                }}
                 className={selected === 'watch later' ? 'selected' : ''}>
                 Watch Later
+                {/* if selected is watch later, show the arrow */}
+                {selected === 'watch later' ?
+                  <Link to="/watchlater">
+                    <FontAwesomeIcon icon="arrow-right" className="arrow-right" />
+                  </Link> : ''}
               </MenuItem>
             </div>
           </Menu>
-          {!menuCollapse && 
-            <ul>
-              <h1>Latest Activities</h1>
-            </ul>
-          }
-          {/* map through activities and return Activity component */}
-          {!menuCollapse &&
-            Object.keys(activities).map((key, index) => {
-              return <Activity activity={activities} key={index} />
-            }
-            )
-          }
+          {menuCollapse ? '' : 
+            <div className="latestActivities">
+              {!menuCollapse &&
+                <ul>
+                  <h1>Latest Activities</h1>
+                </ul>
+              }
+              {/* map through activities and return Activity component */}
+              {!menuCollapse &&
+                Object.keys(activities).map((key, index) => {
+                  return <Activity activity={activities} key={index} />
+                }
+                )
+              }
+            </div> }
         </SidebarContent>
       </ProSidebar>
     </div>
