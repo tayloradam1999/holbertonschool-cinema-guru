@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import './general.css';
 
 
-export default function SelectInput(props) {
+export default function SelectInput({label, options, className, value}) {
   // returns a <input> element with the given attributes.
 
   // props:
@@ -10,10 +10,6 @@ export default function SelectInput(props) {
   // - options: Array - array of select options
   // - className: String - input className
   // - value: Any - input value
-
-  // destructuring props
-  const { label, options, className, value, setValue } = props;
-
 
   return (
     <div className="input-container">

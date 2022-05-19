@@ -4,6 +4,10 @@
   outline: none;
 }
 
+* {
+  font-family: 'Roboto', sans-serif;
+}
+
 /* ###### inputs ###### */
 
 .input-container {

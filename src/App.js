@@ -6,6 +6,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import './App.css';
 import Authentication from './routes/auth/Authentication';
+import Dashboard from './routes/dashboard/Dashboard';
 
 function App() {
   // init state for isLoggedIn
@@ -21,7 +22,7 @@ function App() {
     axios
       .post(`http://localhost:8000/api/auth`, {}, {
         headers: {
-          Authorization: `Bearer ${accessToken}`,
+          authorization: `Bearer ${accessToken}`,
         },
       })
       .then((res) => {
@@ -43,8 +44,10 @@ function App() {
     <div className="App">
       {/* if isLoggedIn is true, show Dashboard component */}
       {isLoggedIn ? (
-        <p>Logged in</p>
-        // <Dashboard userUsername={userUsername} />
+        <Dashboard 
+          userUsername={userUsername} 
+          setIsLoggedIn={setIsLoggedIn} 
+        />
       ) : (
         /* if isLoggedIn is false, show Authentication component */
           <Authentication 

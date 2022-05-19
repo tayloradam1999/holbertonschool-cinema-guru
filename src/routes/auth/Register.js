@@ -4,7 +4,7 @@ import Input from "../../components/general/Input";
 import './auth.css';
 
 
-export default function Register(props) {
+export default function Register({ username, password, setUsername, setPassword }) {
   // Returns form with input fields 'username' and 'password' and a button 'Sign Up'
 
   // Props:
@@ -12,9 +12,6 @@ export default function Register(props) {
   // - password: string - password
   // - setUsername: function - sets the state of the username
   // - setPassword: function - sets the state of the password
-
-  // destructuring props
-  const { username, password, setUsername, setPassword } = props;
 
   return (
     <div className="signup-container">
@@ -46,7 +43,7 @@ export default function Register(props) {
             className="button-signup"
             icon="key"
             type="submit"
-            onClick={() => { }}
+            onClick={() => {}}
           />
         </div>
       </div>

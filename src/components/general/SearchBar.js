@@ -3,15 +3,12 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import './general.css';
 
 
-export default function SearchBar(props) {
+export default function SearchBar({title, setTitle}) {
   // returns a <input> element with the given attributes.
 
   // props:
   // - title: String - input label
   // - setTitle: Function - function to set the value of the input
-  
-  // destructuring props
-  const { title, setTitle } = props;
 
   return (
     <div className="search-bar-container">

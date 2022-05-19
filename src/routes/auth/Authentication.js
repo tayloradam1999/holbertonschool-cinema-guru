@@ -1,12 +1,12 @@
 import React, { useState } from "react";
 import Login from "./Login";
 import Register from "./Register";
+import Dashboard from "../dashboard/Dashboard";
 import axios from "axios";
 import './auth.css'
 
 
-
-export default function Authentication(props) {
+export default function Authentication({setIsLoggedIn, setUserUsername}) {
   // Returns an html form in that has who buttons 'Sign in' and 'Sign up'
 
   // Props:
@@ -20,8 +20,14 @@ export default function Authentication(props) {
   // init state for password
   const [password, setPassword] = useState("");
 
-  // destructuring props
-  const { setIsLoggedIn, setUserUsername } = props;
+  // setup temporary state used to navigate to dashboard
+  // since API is not working as intended.
+  const [tempState, setTempState] = useState(false);
+
+  // function to bring user to dashboard
+  const goToDashboard = () => {
+    setTempState(true);
+  };
 
   // function to switch between sign in and sign up
   function handleSwitch(value) {
@@ -85,45 +91,50 @@ export default function Authentication(props) {
   }
 
   return (
-    <div className="auth-container">
-      <form className="auth-form" onSubmit={handleSubmit} >
-        <div className="auth-form-header">
-            <div
-              className={_switch ? "active" : ""} 
-              id="headerDiv1"
-              onClick={() => {handleSwitch(true)}}
-            >
-              Sign in
+    tempState ? (
+      <Dashboard userUsername={username} setIsLoggedIn={setIsLoggedIn} />
+    ) : (
+        <div className="auth-container">
+          <form className="auth-form" onSubmit={handleSubmit} >
+            <div className="auth-form-header">
+              <div
+                className={_switch ? "active" : ""}
+                id="headerDiv1"
+                onClick={() => { handleSwitch(true) }}
+              >
+                Sign in
+              </div>
+              <div
+                className={!_switch ? "active" : ""}
+                id="headerDiv2"
+                onClick={() => { handleSwitch(false) }}
+              >
+                Sign up
+              </div>
             </div>
-            <div
-              className={!_switch ? "active" : ""}
-              id="headerDiv2"
-              onClick={() => {handleSwitch(false)}}
-            >
-              Sign up
+            <div className="auth-form-body">
+              {/* if _switch is true, show sign in form */}
+              {_switch &&
+                <Login
+                  username={username}
+                  password={password}
+                  setUsername={setUsername}
+                  setPassword={setPassword}
+                  login={goToDashboard}
+                />
+              }
+              {/* if _switch is false, show sign up form */}
+              {!_switch &&
+                <Register
+                  username={username}
+                  password={password}
+                  setUsername={setUsername}
+                  setPassword={setPassword}
+                />
+              }
             </div>
+          </form>
         </div>
-        <div className="auth-form-body">
-          {/* if _switch is true, show sign in form */}
-          {_switch &&
-            <Login 
-              username={username}
-              password={password}
-              setUsername={setUsername}
-              setPassword={setPassword}
-            />
-          }
-          {/* if _switch is false, show sign up form */}
-          {!_switch &&
-            <Register 
-              username={username}
-              password={password}
-              setUsername={setUsername}
-              setPassword={setPassword}
-            />
-          }
-        </div>
-      </form>
-    </div>
+      )
   );
 }

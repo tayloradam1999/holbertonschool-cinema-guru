@@ -4,7 +4,7 @@ import Input from "../../components/general/Input";
 import './auth.css';
 
 
-export default function Login(props) {
+export default function Login({ username, password, setUsername, setPassword, login }) {
   // Returns form with input fields 'username' and 'password' and a button 'Sign in'
 
   // Props:
@@ -12,9 +12,6 @@ export default function Login(props) {
   // - password: string - password
   // - setUsername: function - sets the state of the username
   //- setPassword: function - sets the state of the password
-  
-  // destructuring props
-  const { username, password, setUsername, setPassword } = props;
 
   return (
     <div className="signin-container">
@@ -45,7 +42,11 @@ export default function Login(props) {
             label="Sign in"
             className="button-signin"
             icon= "key"
-            onClick={() => {} }
+            onClick={() => {
+              // call temporary function to navigate to dashboard
+              // since provided API is not working.
+              login();
+            } }
           />
         </div>
       </div>

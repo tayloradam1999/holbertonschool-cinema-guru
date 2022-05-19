@@ -3,7 +3,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import './general.css';
 
 
-export default function Button(props) {
+export default function Button({label, className, type, icon, onClick}) {
   // returns a <button> element with the given attributes.
 
   // Props:
@@ -12,9 +12,6 @@ export default function Button(props) {
   // - type: String - button type
   // - icon: (optional)FontAwesomeIcon - icon name to decorate button
   // - onClick: (optional)Function - function to call when button is clicked
-
-  // destructuring props
-  const { label, className, icon, onClick, type } = props;
 
   return (
     <div className="button-container">

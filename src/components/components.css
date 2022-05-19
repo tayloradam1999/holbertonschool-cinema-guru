@@ -1,0 +1,11 @@
+.activity-item p {
+  font-size: 12px;
+  padding: 0 20px;
+  font-weight: bold;
+}
+
+.activity-item p b {
+  font-size: 12px;
+  font-weight: bold;
+  color: red;
+}

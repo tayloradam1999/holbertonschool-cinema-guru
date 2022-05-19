@@ -1,12 +1,12 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import App from './App';
-import { faUser, faSearch, faKey } from '@fortawesome/free-solid-svg-icons';
+import { faUser, faSearch, faKey, faSignOutAlt, faFolder, faStar, faChartLine, faCalendar, faClock, faArrowRight, faArrowLeft } from '@fortawesome/free-solid-svg-icons';
 import { library } from '@fortawesome/fontawesome-svg-core';
 import './index.css';
 
 
-library.add(faUser, faSearch, faKey);
+library.add(faUser, faSearch, faKey, faSignOutAlt, faFolder, faStar, faChartLine, faCalendar, faClock, faArrowRight, faArrowLeft);
 
 
 const root = ReactDOM.createRoot(document.getElementById('root'));

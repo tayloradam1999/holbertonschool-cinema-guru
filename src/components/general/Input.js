@@ -3,7 +3,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import './general.css';
 
 
-const Input = (props) => {
+const Input = ({label, type, className, value, setValue, icon, inputAttributes}) => {
   // returns a <input> element with the given attributes.
 
   // props:
@@ -19,9 +19,6 @@ const Input = (props) => {
   // - text
   // - password
   // - number
-
-  // destructuring props
-  const { label, type, className, value, icon, inputAttributes, setValue } = props;
 
   // init state
   const [inputValue, setInputValue] = useState(value);
