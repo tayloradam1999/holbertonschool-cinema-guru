@@ -14,6 +14,16 @@ function App() {
   // init state for userUsername
   const [userUsername, setUserUsername] = useState('');
 
+  // handle setIsLoggedIn
+  const handleSetIsLoggedIn = (value) => {
+    setIsLoggedIn(value);
+  }
+
+  // handle setUserUsername
+  const handleSetUserUsername = (value) => {
+    setUserUsername(value);
+  }
+
   // event handler for on mount
   useEffect(() => {
     // get value of accessToken from localStorage
@@ -27,16 +37,17 @@ function App() {
       })
       .then((res) => {
         // on success, set isLoggedIn to true
-        setIsLoggedIn(true);
+        handleSetIsLoggedIn(true);
         // on success, set userUsername to res.data.username
-        setUserUsername(res.data.username);
+        handleSetUserUsername(res.data.username);
         console.log(res.data.username);
       })
       .catch((err) => {
         // on failure, set isLoggedIn to false
-        setIsLoggedIn(false);
+        handleSetIsLoggedIn(false);
         // on failure, set userUsername to ''
-        setUserUsername('');
+        handleSetUserUsername('');
+        console.log(err);
       });
   }, []);
 
@@ -46,13 +57,14 @@ function App() {
       {isLoggedIn ? (
         <Dashboard 
           userUsername={userUsername} 
-          setIsLoggedIn={setIsLoggedIn} 
+          setIsLoggedIn={handleSetIsLoggedIn} 
+          handleSetUserUsername={handleSetUserUsername}
         />
       ) : (
         /* if isLoggedIn is false, show Authentication component */
           <Authentication 
-            setIsLoggedIn={setIsLoggedIn}
-            setUserUsername={setUserUsername}
+            setIsLoggedIn={handleSetIsLoggedIn}
+            setUserUsername={handleSetUserUsername}
           />
         // <Authentication />
       )}

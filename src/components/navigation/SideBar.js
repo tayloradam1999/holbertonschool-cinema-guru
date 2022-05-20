@@ -1,24 +1,39 @@
 import React, { useState } from "react";
-import './sidebar.css';
+// import axios from "axios";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { ProSidebar, Menu, MenuItem, SidebarContent } from 'react-pro-sidebar';
-import 'react-pro-sidebar/dist/css/styles.css';
 import { FiStar, FiFolder, FiClock } from "react-icons/fi";
 import { Link } from "react-router-dom";
 import Activity from "../Activity";
+import 'react-pro-sidebar/dist/css/styles.css';
+import './sidebar.css';
 
 
-export default function SideBar() {
+export default function SideBar({userUsername}) {
   // returns side bar component
 
-  // const navigate = useNavigate();
   const [selected, setSelected] = useState("");
+  // eslint-disable-next-line no-unused-vars
   const [page, setPage] = useState("");
-
-  // sidebar state
   const [menuCollapse, setMenuCollapse] = useState(true);
-
   const [arrowDirection, setArrowDirection] = useState("right");
+  // const [activities, setActivities] = useState([]);
+
+  // temporary static activity object - still getting
+  // 'Error 403: Forbidden' from the Docker API.
+  const staticActivity = {
+    "user": {
+      "name": `${userUsername}`
+    },
+    "action": "added",
+    "subject": {
+      "name": "The Matrix"
+    },
+    "object": {
+      "name": "Favorites"
+    },
+    "created_at": "20th of May, 2022",
+    };
 
   const menuIconClick = () => {
     menuCollapse ? setMenuCollapse(false) : setMenuCollapse(true);
@@ -28,20 +43,17 @@ export default function SideBar() {
     arrowDirection === "right" ? setArrowDirection("left") : setArrowDirection("right");
   }
 
-  // temporary data since API is not working.
-  const activities = {
-    "user": {
-      "name": "John Doe"
-    },
-    "action": "added",
-    "subject": {
-      "name": "Favorites"
-    },
-    "object": {
-      "name": "Star Wars: The Last Jedi"
-    },
-    "created_at": "19th May, 2022"
-  };
+  // get request to /api/activity
+  // useEffect(() => {
+  //   axios
+  //     .get(`http://localhost:8000/api/activity/`)
+  //     .then((res) => {
+  //       setActivities(res.data);
+  //     })
+  //     .catch((err) => {
+  //       console.log('Still getting 403 Forbidden error from Docker API:', err);
+  //     });
+  // }, []);
 
   return (
     <div id="header">
@@ -103,8 +115,8 @@ export default function SideBar() {
               }
               {/* map through activities and return Activity component */}
               {!menuCollapse &&
-                Object.keys(activities).map((key, index) => {
-                  return <Activity activity={activities} key={index} />
+                Object.values(staticActivity).map((key, index) => {
+                  return <Activity activity={staticActivity} key={index} />
                 }
                 )
               }
@@ -112,5 +124,5 @@ export default function SideBar() {
         </SidebarContent>
       </ProSidebar>
     </div>
-  )
+  );
 }

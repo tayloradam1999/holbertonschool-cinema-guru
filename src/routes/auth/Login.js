@@ -4,7 +4,7 @@ import Input from "../../components/general/Input";
 import './auth.css';
 
 
-export default function Login({ username, password, setUsername, setPassword, login }) {
+export default function Login({ username, password, setUsername, setPassword }) {
   // Returns form with input fields 'username' and 'password' and a button 'Sign in'
 
   // Props:
@@ -43,9 +43,7 @@ export default function Login({ username, password, setUsername, setPassword, lo
             className="button-signin"
             icon= "key"
             onClick={() => {
-              // call temporary function to navigate to dashboard
-              // since provided API is not working.
-              login();
+              console.log(`Sign in ${username}`);
             } }
           />
         </div>

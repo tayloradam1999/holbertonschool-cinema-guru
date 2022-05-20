@@ -3,7 +3,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import './navigation.css';
 
 
-export default function Header({userUsername, setIsLoggedIn, logout}) {
+export default function Header({userUsername, handleSetUserUsername, setIsLoggedIn, logout}) {
   // Returns a header nav element
 
   // Props:
@@ -20,11 +20,15 @@ export default function Header({userUsername, setIsLoggedIn, logout}) {
         </li>
         <li className="picAndName">
           <img src="https://picsum.photos/100/100" alt="logo" />
-          {/* <p>Welcome, {userUsername}</p> */}
-          <p>Welcome, username</p>
+          <p>Welcome, {userUsername}</p>
         </li>
         <li>
-          <span className="logout" onClick={logout}>
+          <span className="logout" onClick={() => {
+            logout();
+            setIsLoggedIn(false);
+            handleSetUserUsername("");
+            console.log(`Logout ${userUsername}`);
+          }} >
             <FontAwesomeIcon icon="sign-out-alt" />
             <p>Logout</p>
           </span>
